@@ -1,6 +1,6 @@
 .idea
 .idea/*
-.node_modules/
-.node_modules/*
-.db/
-.db/*
+node_modules/
+node_modules/*
+db/
+db/*
