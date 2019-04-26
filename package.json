@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ro-kl/node-api#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "mysql": "^2.17.1"
   }
 }

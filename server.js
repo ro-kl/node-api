@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
+const mysql = require('mysql');
 
 app.use(morgan('combined'));
 
@@ -10,10 +11,22 @@ app.get('/', (req, res) => {
 });
 
 app.get('/users', (req, res) => {
-
     let user1 = {firstName: 'Roman', lastName: 'Kluth'};
-
     res.json(user1);
+});
+
+app.get('/users/:id', (req, res) => {
+    const connection = mysql.createConnection({
+        user: 'tester',
+        password: 'tester',
+        database: 'testdaten',
+        port: 3316
+    });
+
+    const query = 'SELECT * FROM users WHERE id = ?';
+    connection.query(query, [req.params.id] , (err, rows, fields) => {
+        res.json(rows);
+    });
 });
 
 app.listen(8000, () => {

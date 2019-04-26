@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  db:
+    image: mysql
+    environment:
+      - MYSQL_DATABASE=testdaten
+      - MYSQL_USER=tester
+      - MYSQL_PASSWORD=tester
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./db:/var/lib/mysql
+    ports:
+      - "3316:3306"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_ARBITRARY: 1
+      MYSQL_USER: tester
+      MYSQL_PASSWORD: tester
+      MYSQL_ROOT_PASSWORD: tester
+    ports:
+      - "666:80"
+    links:
+      - "db:db"
