@@ -25,6 +25,11 @@ app.get('/users/:id', (req, res) => {
 
     const query = 'SELECT * FROM users WHERE id = ?';
     connection.query(query, [req.params.id] , (err, rows, fields) => {
+        if(err) {
+            console.log('Failed to load data.');
+            res.sendSatus(500);
+            res.end();
+        }
         res.json(rows);
     });
 });
